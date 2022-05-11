@@ -1,10 +1,10 @@
 # Setup dependencies
 
+In this first lesson we will set up our environment for developing with JavaScript, NodeJs and TypeScript. 
 
+[install nodejs](https://nodejs.org/en/)
 
-install nodejs
-
-install vscode
+[install vscode](https://code.visualstudio.com/)
 
 ```mkdir typescript-todos```
 
@@ -16,17 +16,57 @@ install vscode
 
 ```touch tsconfig.json```
 
+In TypeScript we can create types in the following way:
+
+
+```typescript
+// The primitives
+const name:string = "John Doe";
+const age:number = 30;
+let done:boolean = false;
+
+// interfaces
+interface ICar = { 
+    brand: string, 
+    readonly model: string
+    mileage?: number
+};
+
+const car:ICar = {
+    brand: 'Toyota',
+    model: 'Camry',
+    mileage: 10E3
+}
+
+const cars:ICar[] = [];
+const myCars:Array<ICar> = [];
+
+// type hints
+type UUID = string;
+type age = number;
+
+```
+
 ## Task: 
 
-Create an array of todos with the fields id which is an UUID, completed and task. 
+Create an array of todos with the following fields:
+* id which is an UUID
+* completed
+* task
 
-Map and filter this array and log out the items that are not complete. 
+Map and filter this array and log out the items that are not complete by calling console.log(item). 
 
-run your code with ```ts-node index.ts```
+run your code with `ts-node index.ts`
+
+Alternatively we can compile out code with `npx tsc` and then a javascript file is created.
+
+Next we will add a little functionality
+
+## Task:
 
 Add an optional field location
 
-We can add a field "status" with an option for not started, in progress and done.
+We add a field "status" with an option for not started, in progress and done.
 
 At the end of this lesson you should have the following files:
 * index.ts
