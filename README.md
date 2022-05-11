@@ -1,32 +1,45 @@
-# Setup dependencies
+# Lesson 2 more types
+
+We should break up our code and create a service layer to manage our todos. We can use modules for this, which are just separate TypeScript files.
+
+At the end of this lesson you know ho modules work and how to write unit tests.
+
+## Create a TODO service 
+
+Starting with ECMAScript 2015, JavaScript has a concept of modules. TypeScript shares this concept.
+
+Modules are executed within their own scope, not in the global scope; this means that variables, functions, classes, etc. declared in a module are not visible outside the module unless they are explicitly exported using one of the export forms. Conversely, to consume a variable, function, class, interface, etc. exported from a different module, it has to be imported using one of the import forms.
+
+
+```typescript 
+// named exports
+export interface StringValidator {
+  isAcceptable(s: string): boolean;
+}
+// default export
+export default $;
+
+
+// named import
+import { StringValidator } from "./StringValidator";
+
+// default import
+import $ from "jquery";
+```
+
+## Tasks
+
+* Create a directory called `services`
+* Create a file called `todo-service.ts`
+* create CRUD functions for our service
 
 
 
-install nodejs
 
-install vscode
+## write tests for the service 
 
-```mkdir typescript-todos```
 
-```npm init```
 
-```npm install ts-node typescript```
-
-```touch index.ts```
-
-```touch tsconfig.json```
-
-## Task: 
-
-Create an array of todos with the fields id which is an UUID, completed and task. 
-
-Map and filter this array and log out the items that are not complete. 
-
-run your code with ```ts-node index.ts```
-
-Add an optional field location
-
-We can add a field "status" with an option for not started, in progress and done.
 
 At the end of this lesson you should have the following files:
 * index.ts
