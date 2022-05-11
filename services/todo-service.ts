@@ -1,19 +1,10 @@
 import { ITodo } from "../@types/Todo";
 
-interface ICrudService<T> {
-    getAll():Promise<T[]>
-    add(item:T):Promise<void>
-    delete(id:string):Promise<void> 
-    update(id:string, newItem:Partial<T>):Promise<T> 
-    // getById(id:string):Promise<T>
-}
-
-
 /**
  * Service to store and add/remove todos
  * 
  */
-export class TodoService implements ICrudService<ITodo>{
+export class TodoService {
     private repo: Set<ITodo>
     
     constructor(){
