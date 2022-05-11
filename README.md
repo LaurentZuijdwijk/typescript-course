@@ -19,7 +19,6 @@ export interface StringValidator {
 // default export
 export default $;
 
-
 // named import
 import { StringValidator } from "./StringValidator";
 
@@ -27,21 +26,27 @@ import { StringValidator } from "./StringValidator";
 import $ from "jquery";
 ```
 
-## Tasks
+## Task: create a service layer
 
 * Create a directory called `services`
 * Create a file called `todo-service.ts`
-* create CRUD functions for our service
+* create CRUD functions for our service to add, remove and update todos
+* CRUD functions should return Promise types
 
 
+## Task: write tests for the service
+
+* Create a file called `todo-service.test.ts`
+* install jest as test runner `npm install --save-dev ts-jest @types/jest`
+* `npx ts-jest config:init`
+* `npx jest` to run the tests
 
 
-## write tests for the service 
+## Task use the service layer to add and remove tasks
 
+Use the service layer in the index.ts file. Replace the exising code
 
-
-
-At the end of this lesson you should have the following files:
-* index.ts
-* package.json
-* tsconfig.json
+At the end of this lesson you should have the following extra files:
+* todo-service.ts
+* todo-service.test.ts
+* jest.config.js
