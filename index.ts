@@ -1,24 +1,16 @@
-enum STATUS  {
-    NOT_STARTED,
-    IN_PROGRESS,
-    DONE
-}
+import { TodoService } from "./services/todo-service";
+import { stdout } from 'process';
 
-type UUID = string;
+const todoService = new TodoService();
 
-interface ITodo {
-    id: UUID,
-    complete: boolean,
-    task: string
-    location?: string,
-    status?: STATUS
-}
+(async () => {
+    await todoService.add({ id: "1", complete: false, task: 'Mow the lawn' })
+    await todoService.add({ id: "2", complete: true, task: 'Prepare typescript course' })
+    await todoService.add({ id: "3", complete: false, task: 'Fill out timesheet' })
 
-const todoList:ITodo[] = [
-    {id: "1", complete:false, task: 'mow the lawn'},
-    {id: "2", complete:true, task: 'prepare typescript course'},
-    {id: "3", complete:false, task: 'fill out timesheet'}
-];
-
-const todos = todoList.filter(todo => !todo.complete).map(todo => todo.task)
-console.log(todos)
+    const todos = (await todoService.getAll())
+        .filter(todo => !todo.complete)
+        .map(todo => todo.task).forEach(item => {
+            stdout.write(item + '\n')
+        });
+})();
