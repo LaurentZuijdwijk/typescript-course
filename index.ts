@@ -1,4 +1,4 @@
-enum STATUS  {
+enum STATUS {
     NOT_STARTED,
     IN_PROGRESS,
     DONE
@@ -14,11 +14,14 @@ interface ITodo {
     status?: STATUS
 }
 
-const todoList:ITodo[] = [
-    {id: "1", complete:false, task: 'mow the lawn'},
-    {id: "2", complete:true, task: 'prepare typescript course'},
-    {id: "3", complete:false, task: 'fill out timesheet'}
+const todoList: ITodo[] = [
+    { id: "1", complete: false, task: 'Mow the lawn' },
+    { id: "2", complete: true, task: 'Prepare typescript course' },
+    { id: "3", complete: false, task: 'Fill out timesheet' }
 ];
 
-const todos = todoList.filter(todo => !todo.complete).map(todo => todo.task)
+const todos = todoList
+    .filter(todo => !todo.complete)
+    .map(todo => todo.task);
+
 console.log(todos)
