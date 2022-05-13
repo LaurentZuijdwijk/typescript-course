@@ -1,47 +1,52 @@
-# Lesson 2 more types
+# Lesson 3 Generic types, extending types, comments
 
-We should break up our code and create a service layer to manage our todos. We can use modules for this, which are just separate TypeScript files.
+In this lesson we will implement an interface with generic types and add documentation to our classes.
 
-At the end of this lesson you know ho modules work and how to write unit tests.
+Essentially, generic types allow you to write a general, generic class (or method) that works with different types, allowing for code re-use. In TypeScript a generic type is defined by adding the generic like `<Type>` where we want to use it.
 
-## Create a TODO service 
+Example:
+`Promise<string>` is a promise that returns a string.
+`Promise<ITodo>` is a promise that returns a Todo object.
 
-Starting with ECMAScript 2015, JavaScript has a concept of modules. TypeScript shares this concept.
+We can create our own generic types and functions in the following way. 
 
-Modules are executed within their own scope, not in the global scope; this means that variables, functions, classes, etc. declared in a module are not visible outside the module unless they are explicitly exported using one of the export forms. Conversely, to consume a variable, function, class, interface, etc. exported from a different module, it has to be imported using one of the import forms.
-
-
-```typescript 
-// named exports
-export interface StringValidator {
-  isAcceptable(s: string): boolean;
+```TypeScript
+class DoSomething<T> {
+  async getFromRemote():T{
+    const data = await fetch()
+    return JSON.parse(data) as T;
+  }
 }
-// default export
-export default $;
-
-
-// named import
-import { StringValidator } from "./StringValidator";
-
-// default import
-import $ from "jquery";
+```
+Or for a function:
+```typescript
+function identity<Type>(arg: Type): Type {
+  return arg;
+}
 ```
 
-## Tasks
+## Task
 
-* Create a directory called `services`
-* Create a file called `todo-service.ts`
-* create CRUD functions for our service
+* Create an interface for a CRUD service to retrieve, add, update and delete items. 
+* Our TODO service should implement our generic service. 
 
+# Type modifiers 
 
+Typescript comes with a number of built in [utility types](https://www.typescriptlang.org/docs/handbook/utility-types.html). We used the `Partial` type already to update todos.
 
+Some other ones that are useful are:
+* Readonly\<Todo>
+* Pick\<T> 
 
-## write tests for the service 
+```typescript
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+ 
+type TodoPreview = Pick<Todo, "title" | "completed">;
+```
 
-
-
-
-At the end of this lesson you should have the following files:
-* index.ts
-* package.json
-* tsconfig.json
+## Task
+* Make the returned array of Todos immutable
