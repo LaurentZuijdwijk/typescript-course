@@ -9,5 +9,5 @@ export interface ICrudService<T> {
     add(item:T):Promise<void>
     delete(id:string):Promise<void> 
     update(id:string, newItem:Partial<T>):Promise<T> 
-    getById(id:string):Promise<T>
+    getById(id:string):Promise<T | undefined>
 }

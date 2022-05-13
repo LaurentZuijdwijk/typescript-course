@@ -23,19 +23,21 @@ export class TodoService implements ICrudService<ITodo> {
 
     delete(id:string):Promise<void> {
         const item = Array.from(this.repo).find(item => item.id === id)
-        this.repo.delete(item);
+        if(item) this.repo.delete(item);
         return Promise.resolve();
     }
 
     update(id:string, newItem:Partial<ITodo>):Promise<ITodo> {
         const found = Array.from(this.repo).find(item => item.id === id)
-
-        const replace = {...found, ...newItem};
-        this.delete(id);
-
-        this.repo.add(replace);
-
-        return Promise.resolve(replace);
+        if(found){
+            const replace = {...found, ...newItem};
+            this.delete(id);
+    
+            this.repo.add(replace);
+    
+            return Promise.resolve(replace);
+        }
+        return Promise.reject('Item not found')
     }
 
     findIncomplete(): Promise<ITodo[]> {
@@ -43,7 +45,8 @@ export class TodoService implements ICrudService<ITodo> {
         return Promise.resolve(found);
     }
 
-    getById(id:string):Promise<ITodo>{
-        return Promise.resolve(Array.from(this.repo).find(item => item.id === id))
+    getById(id:string):Promise<ITodo | undefined>{
+        const found = Array.from(this.repo).find(item => item.id === id);
+        return Promise.resolve(found);
     }
 }
