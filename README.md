@@ -1,52 +1,35 @@
-# Lesson 3 Generic types, extending types, comments
+# Lesson 4 TypeScript tooling
 
-In this lesson we will implement an interface with generic types and add documentation to our classes.
+To run typescript applications in production, we compile it to javascript for nodejs or for browsers. For both targets the tooling is slightly different. 
 
-Essentially, generic types allow you to write a general, generic class (or method) that works with different types, allowing for code re-use. In TypeScript a generic type is defined by adding the generic like `<Type>` where we want to use it.
+For NodeJs we want to run the `tsc` command with a specific target folder, while for browser apps we want to compile all code into one or more minimized files.  
 
-Example:
-`Promise<string>` is a promise that returns a string.
-`Promise<ITodo>` is a promise that returns a Todo object.
+## Nodejs 
 
-We can create our own generic types and functions in the following way. 
+[documentation](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
 
-```TypeScript
-class DoSomething<T> {
-  async getFromRemote():T{
-    const data = await fetch()
-    return JSON.parse(data) as T;
-  }
+We already have an empty tsconfig.json file. Let's install a base config for node 14. 
+
+`npm install --save-dev @tsconfig/node14`
+
+Update the config with the following
+```
+{
+  "extends": "@tsconfig/node14/tsconfig.json",
+  "compilerOptions": {
+    "preserveConstEnums": true,
+    "outDir": "dist"
+  },
+  "include": ["**/*"],
+  "exclude": ["node_modules", "**/*.test.ts"]
 }
 ```
-Or for a function:
-```typescript
-function identity<Type>(arg: Type): Type {
-  return arg;
-}
-```
 
-## Task
+There is a good chance that with the updated settings we will get stricter type checking. We should correct these type errors.
 
-* Create an interface for a CRUD service to retrieve, add, update and delete items. 
-* Our TODO service should implement our generic service. 
+Now that we have created our compiled JS files we can run them with: `node ./dist/index.js
 
-# Type modifiers 
+For development we can watch files using `npx ts-node-dev`
 
-Typescript comes with a number of built in [utility types](https://www.typescriptlang.org/docs/handbook/utility-types.html). We used the `Partial` type already to update todos.
+Build and dev scripts can be added to package.json in the `scripts` object. `npm run test` will run the test command for example.
 
-Some other ones that are useful are:
-* Readonly\<Todo>
-* Pick\<T> 
-
-```typescript
-interface Todo {
-  title: string;
-  description: string;
-  completed: boolean;
-}
- 
-type TodoPreview = Pick<Todo, "title" | "completed">;
-```
-
-## Task
-* Make the returned array of Todos immutable
