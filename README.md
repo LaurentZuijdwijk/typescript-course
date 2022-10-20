@@ -1,11 +1,12 @@
 # Setup dependencies
 
-In this first lesson we will set up our environment for developing with JavaScript, NodeJs and TypeScript. 
+In this first lesson we will set up our environment for developing with TypeScript and NodeJs. 
 
 [install nodejs](https://nodejs.org/en/)
 
 [install vscode](https://code.visualstudio.com/)
 
+## Task: Create the environment
 ```mkdir typescript-todos```
 
 ```npm init```
@@ -49,12 +50,12 @@ type age = number;
 
 ## Task: 
 
-Create an array of todos with the following fields:
+1. Edit index.ts and create an array of todos with the following fields:
 * id which is an UUID
 * completed
 * task
 
-Map and filter this array and log out the items that are not complete by calling console.log(item). 
+2 . Map and filter this array and log out the items that are not complete by calling console.log(item). 
 
 run your code with `ts-node index.ts`
 
