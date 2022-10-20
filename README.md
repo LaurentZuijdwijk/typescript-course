@@ -1,3 +1,13 @@
+# Introduction
+
+This is a multi lesson typescript and Node.js course. By the end of the course you should be able to create a web API using typescript and you should have a basic understanding of the features of typescript. 
+
+TypeScript is a superset of JavaScript, it has all the functionality of modern JS with the addition of types. 
+
+TypeScript has to be compiled to JavaScript before it can be run in the Node.js runtime. Compile time is the only time that the type checks for typescript are being run. Typescript doesn't offer runtime type checking as it compiles to plain old JS.
+
+Node.js is a eventloop based server/command line runtime. It has its own set of APIs that differ from the standard browser APIs.
+
 # Setup dependencies
 
 In this first lesson we will set up our environment for developing with TypeScript and NodeJs. 
