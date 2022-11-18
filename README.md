@@ -46,6 +46,13 @@ const myCars:Array<ICar> = [];
 type UUID = string;
 type age = number;
 
+enum Direction {
+  Up,
+  Down,
+  Left,
+  Right,
+}
+
 ```
 
 ## Task: 
